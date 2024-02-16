@@ -38,8 +38,17 @@ public class Board {
   //counts the number of neighbors who are alive, returns the result as an integer
 	//counts all eighth neighboring spaces
   public int countLiveNeighbors(int i, int j) {
-    
-    return 0;
+    // check spot r,c for getisAlive and then make sure that r < board.length && and c < board[j].length
+    //board[i][j].getIsAlive()
+    int counter = 0;
+    for (int r = i - 1; r<= i+1; r++) {
+      for (int c = j - 1; c <= j+1; c++) {
+        if ((r!=i || c != j) && r>=0 && c>=0 && r < board.length && c < board[j].length && board[r][c].getIsAlive()) {
+          counter ++;
+        }
+      }
+    }
+    return counter;
   }
 
   public void createNewGeneration() {
@@ -48,7 +57,19 @@ public class Board {
     //all changes should be reflected only on nextGenBoard, and we copy them over on the last line of the method
 
 	//for each space in the nextGenBoard:
-		
+    for (int r = 0; r < nextGenBoard.length; r++) {
+      for (int c = 0; c < nextGenBoard[r].length; c++) {
+        if (countLiveNeighbors(r, c) == 2 || countLiveNeighbors(r, c) == 3) {
+          nextGenBoard[r][c].setIsAlive(true);
+        }
+        else if () {
+
+        }
+        else if () {
+
+        }
+      }
+    }
       //a live cell with 2-3 neighbors survives
       
 
