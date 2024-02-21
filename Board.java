@@ -67,17 +67,20 @@ public class Board {
     for (int r = 0; r < board.length; r++) {
       for (int c = 0; c < board[r].length; c++) {
         boolean isalive = false;
-
+        // check if the number of live neighbors is 2 or 3 then set those squares to alive from dead
         int count = countLiveNeighbors(r, c);
         if (board[r][c].getIsAlive() && count == 2 || count == 3) {
           isalive = true;
         }
+        // if the count is three then stay alive
         if (!board[r][c].getIsAlive() && count == 3) {
           isalive = true;
         }
+        // otherwise if it is alive and is 6 then stay alive
         if (!board[r][c].getIsAlive() && count == 6) {
           isalive = true;
         }
+        // otherwise all cells stay dead
         nextGenBoard[r][c] = new Cell(isalive);
       }
     }
